@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getCompanies } from '../../actions/companies';
+import { getCompanies,deleteCompanies } from '../../actions/companies';
 
 
 export class Companies extends Component {
-    static PropTypes = {
-        companies: PropTypes.array.isRequired
+    static propTypes = {
+        companies: PropTypes.array.isRequired,
+        getCompanies: PropTypes.func.isRequired,
+        deleteCompanies: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -33,7 +35,7 @@ export class Companies extends Component {
                     {  this.props.companies.map(company => (
                     <div className = "container" key= {company.id}>
                         <div className="card">
-                            <h5 className="card-header">{company.id}.{company.name}</h5>
+                            <h5 className="card-header">{company.id}. {company.name}</h5>
                             <div className="card-body">
                                 <div className = "row">
                     
@@ -54,6 +56,8 @@ export class Companies extends Component {
                                         <a href="#" className="btn btn-primary btn-lg btn-block">Visit store</a>
                                         <br/>
                                         <a href="#" className="btn btn-primary btn-lg btn-block">Contact</a>
+                                        <br/>
+                                        <button onClick={this.props.deleteCompanies.bind(this, company.id)} className="btn btn-primary btn-lg btn-block">Delete</button>
                                     </div>
                                         
                                     
@@ -76,4 +80,4 @@ const mapStateToProps = state => (
     }
 )
 
-export default connect(mapStateToProps,{ getCompanies })(Companies)
+export default connect(mapStateToProps,{ getCompanies,deleteCompanies })(Companies)
