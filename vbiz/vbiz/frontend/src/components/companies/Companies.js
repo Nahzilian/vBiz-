@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCompanies } from '../../actions/companies';
 
+
 export class Companies extends Component {
     static PropTypes = {
         companies: PropTypes.array.isRequired
@@ -13,43 +14,55 @@ export class Companies extends Component {
     }
 
     render() {
+
+        const myStyle = {
+            color: "black",
+            backgroundColor:"white",
+            padding:"40px",
+            margin:"10px",
+        }
+        const styletd={
+            padding:"40px", 
+        }
         return (
             <div>
                 <Fragment>
                     <h1>Vbiz list</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Postal Code</th>
-                                <th>Province</th>
-                                <th>Description</th>
-                                <th>Opening time</th>
-                                <th/>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.companies.map(company => (
-                                    <tr key= {company.id}>
-                                        <td>{company.id}</td>
-                                        <td>{company.name}</td>
-                                        <td>{company.c_email}</td>
-                                        <td>{company.c_phone}</td>
-                                        <td>{company.b_address}</td>
-                                        <td>{company.b_postal}</td>
-                                        <td>{company.b_province}</td>
-                                        <td>{company.d_desc}</td>
-                                        <td>{company.open_time}</td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
+                    
+                    
+                    {  this.props.companies.map(company => (
+                    <div className = "container" key= {company.id}>
+                        <div className="card">
+                            <h5 className="card-header">{company.id}.{company.name}</h5>
+                            <div className="card-body">
+                                <div className = "row">
+                    
+                                    <img alt = "test" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXG8ZZqfz0gklsusjRteRGT3IlrpSrjjMVW403TkUmcpPGCx59&s" width = "250px" height ="250px"/>
+                                    <div className = "col">
+                                        <h5 className="card-title">Description</h5>
+                                        <p className="card-text">{company.d_desc}</p>
+                                        <p className="card-text">Address: {company.b_address}, {company.b_province}, {company.b_postal}, Canada</p>
+                                        Contact:
+                                        <ul>
+                                            <li>Phone: {company.c_phone}</li>
+                                            <li>Email: {company.c_email}</li>    
+                                        </ul>
+                                        <p className = "card-text">{company.open_time}</p>
+                                    </div>
+                                        
+                                    <div className = "col">
+                                        <a href="#" className="btn btn-primary btn-lg btn-block">Visit store</a>
+                                        <br/>
+                                        <a href="#" className="btn btn-primary btn-lg btn-block">Contact</a>
+                                    </div>
+                                        
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                   
+                    ))}
                 </Fragment>
                 
             </div>
