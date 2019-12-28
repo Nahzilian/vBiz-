@@ -70,8 +70,9 @@ export class Form extends Component {
                 {/*Province input*/}
                 <div className ="form-group col-md-2">
                     <label htmlFor="formGroupExampleInput">Province:</label>
-                    <input type="text" className ="form-control"   placeholder="Province" name = "c_province" onChange ={this.onChange} value = {b_province}/>
+                    <input type="text" className ="form-control"   placeholder="Province" name = "b_province" onChange ={this.onChange} value = {b_province}/>
                 </div>
+
                 </div>
 
                 {/*Phone input*/}
