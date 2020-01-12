@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { CREATE_MESSAGE, createMessage} from './messages';
 
-import { GET_COMPANIES, DELETE_COMPANIES, ADD_COMPANIES } from './types';
+
+import { GET_COMPANIES, DELETE_COMPANIES, ADD_COMPANIES, GET_ERRORS } from './types';
 
 //GET COMPANY
 
@@ -20,6 +22,7 @@ export const getCompanies = () => dispatch => {
 export const deleteCompanies = (id) => dispatch => {
     axios.delete(`api/companies/${id}/`)
     .then(res => {
+        dispatch(createMessage({ deleteCompany: 'Company Deleted'}));
         dispatch({
             type: DELETE_COMPANIES,
             payload: id
@@ -33,10 +36,21 @@ export const deleteCompanies = (id) => dispatch => {
 export const addCompanies = (company) => dispatch => {
     axios.post('http://127.0.0.1:8000/api/companies/',company)
     .then(res => {
+        dispatch(createMessage({ addCompany: 'Company Added'}));
         dispatch({
             type: ADD_COMPANIES,
             payload: res.data
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+    const errors = {
+        msg: err.response.data,
+        status: err.response.status
+    }
+    dispatch({
+        type: GET_ERRORS,
+        payload: errors
+    });
+});
 }
+

@@ -31,6 +31,18 @@ export class Form extends Component {
         const { name,b_address,b_postal,b_city,b_province,c_phone,c_email,service_type,open_time,d_desc } = this.state;
         const company = { name,b_address,b_postal,b_city,b_province,c_phone,c_email,service_type,open_time,d_desc };
         this.props.addCompanies(company);
+        this.setState({
+        name:'',
+        b_address: '',
+        b_postal:'',
+        b_city:'',
+        b_province:'',
+        c_phone: '',
+        c_email: '',
+        service_type:'',
+        open_time:'',
+        d_desc:'',
+        })
     }
     render() {
         
@@ -78,7 +90,7 @@ export class Form extends Component {
                 {/*Phone input*/}
                 <div className ="form-group">
                     <label htmlFor="formGroupExampleInput">Phone:</label>
-                    <input type="tel" className ="form-control"   name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="Phone number" name = "c_phone" onChange ={this.onChange} value = {c_phone}/>
+                    <input type="tel" className ="form-control"  placeholder="Phone number" name = "c_phone" onChange ={this.onChange} value = {c_phone}/>
                 </div>
 
                 {/*Email input*/}
