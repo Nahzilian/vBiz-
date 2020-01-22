@@ -49,7 +49,7 @@ export class Form extends Component {
         const { name,b_address,b_postal,b_city,b_province,c_phone,c_email,service_type,open_time,d_desc } = this.state;
         return (
             <div className = "container">
-            <h2>Register your conpany name for free!</h2>
+            <h2>Register your company name for free!</h2>
 
             <br/>
             <form onSubmit = {this.onSubmit}>

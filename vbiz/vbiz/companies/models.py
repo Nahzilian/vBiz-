@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Company(models.Model):
     name = models.CharField(max_length=300)
@@ -12,3 +12,5 @@ class Company(models.Model):
     service_type = models.CharField(max_length=100)
     open_time = models.CharField(max_length=250)
     d_desc = models.TextField()
+    owner = models.ForeignKey(User, related_name="companies",on_delete=models.CASCADE, null = True)
+

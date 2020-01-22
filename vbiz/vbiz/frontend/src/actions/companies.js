@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { CREATE_MESSAGE, createMessage} from './messages';
+import { CREATE_MESSAGE, createMessage, returnErrors} from './messages';
 
 
-import { GET_COMPANIES, DELETE_COMPANIES, ADD_COMPANIES, GET_ERRORS } from './types';
+import { GET_COMPANIES, DELETE_COMPANIES, ADD_COMPANIES} from './types';
 
 //GET COMPANY
 
@@ -14,7 +14,9 @@ export const getCompanies = () => dispatch => {
             payload: res.data
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch(
+        returnErrors(err.response.data, err.response.status)
+    ));
 }
 
 //DELETE COMPANY
@@ -42,15 +44,10 @@ export const addCompanies = (company) => dispatch => {
             payload: res.data
         });
     })
-    .catch(err => {
-    const errors = {
-        msg: err.response.data,
-        status: err.response.status
-    }
-    dispatch({
-        type: GET_ERRORS,
-        payload: errors
-    });
-});
+    .catch(err => dispatch(
+        returnErrors(err.response.data, err.response.status)
+    )
+
+    );
 }
 
