@@ -22,6 +22,9 @@ export class Alerts extends Component {
             if(error.msg.service_type) alert.error(`Service type: ${error.msg.service_type.join()}`);
             if(error.msg.open_time) alert.error(`Opening time: ${error.msg.open_time.join()}`);
             if(error.msg.d_desc) alert.error(`Description: ${error.msg.d_desc.join()}`);
+        
+            if(error.msg.non_field_errors) alert.error(error.msg.non_field_errors.join());
+        
         }
         if(message !== prevPros.message){
             if(message.addCompany) alert.success(message.addCompany);
